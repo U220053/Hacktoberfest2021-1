@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 10
+char QUEUE[size],rear=-1,front=-1,i;
+void CENQUE(char);
+char CDELQUE();
+void CDISPLAY();
+void main(){
+  int n;
+  char x;
+  int c;
+   printf("enter size \n");
+ scanf("%d",&n);
+ 
+ do{
+ 	 printf("Press a key to perform the following operations in the array:\n"
+  "to insert press 1\n"
+  "to delete press 2\n"
+  
+  "to display press 3\n"
+  "to exit press 4\n");
+  printf("\n Enter your choice="); 
+  scanf("%d",&c);
+  switch (c){
+  	case 1:
+  		
+  		if((rear==n-1 && front==0) || (front==rear+1) )
+  		printf("\n Queue overflow\n");
+  		else{
+  			printf("Enter value to be pushed:");
+  			scanf(" %c",&x);
+  		  	CENQUE(x);
+		  }
+  		 break;
+  	case 2:
+  			if(front==-1 ){
+		  
+  			printf("\n Queue underflow \n");
+  		
+  		}
+  		else{
+  			
+  			printf("\n Deleted element is %c \n",CDELQUE());
+  			
+		  }
+  	
+  		 break;
+  	case 3:
+  		CDISPLAY();
+  		break;
+  	case 4:exit(0);
+  	default:
+  		printf("invalid choice, please enter according to the menu\n");
+  }
+ printf("\nDo you wish to continue? press y to continue or any key to exit\n");
+  scanf(" %c",&c);
+ }while(c=='y');
+ 
+}
+void CENQUE(char a){
+	if( rear==-1)
+	{
+		front=0;rear=0;
+	}else
+	rear=(rear+1)%size;
+	QUEUE[rear]=a;
+}
+char CDELQUE(){
+char	item= QUEUE[front];
+	if(front==rear)
+	{
+		front=rear=-1;
+	}else
+	front=(front+1)%size;
+return item;;
+}
+void CDISPLAY(){
+	if(front==-1 )
+	printf("Queue is empty \n");
+	else{
+		printf("Queue is: \n");
+		
+		for(i=front;i!=rear;i=(i+1)%size){
+			printf(" %c",QUEUE[i]);
+		}
+	printf(" %c",QUEUE[rear]);
+		
+
+
+	}
+}
+
